@@ -255,4 +255,3 @@ Izborom centra rotacije, klikom na tacku koju rotiramo i unosenjem ugla rotacije
 
 Izborom tacke i kruga, uz ovu opciju konstruisemo inverznu sliku tacke u odnosu na dati krug (anaizom da li je u krugu, van njega ili na kruznici)
 
-Petar Samardžić | Momčilo Mrkaić | Pavle Pakalović | Miloš Milićev
