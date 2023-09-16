@@ -1,5 +1,5 @@
 # GeoGebra u C#
-This application is the result of joint efforts by Petar Samardžić and Momčilo Mrkaić as part of a project for our Object-Oriented Programming class.
+This application is the result of joint efforts by Petar Samardžić and Momčilo Mrkaić as part of a project for our Object-Oriented Programming class. Since this was a project for our high-school class, some of the words/names in the code are in Serbian.
 
 # Class Matrica
 
