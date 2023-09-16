@@ -1,257 +1,267 @@
 # GeoGebra u C#
-C# app koja imitira GeoGebru
+This application is the result of joint efforts by Petar Samardžić and Momčilo Mrkaić as part of a project for our Object-Oriented Programming class.
 
-# Klasa Matrica
+# Class Matrica
 
-- **Atributi**
+- **Attributes**
 
-Jedini atribut je float [,] mat koji predstavlja datu matricu.
+The only attribute is float [,] mat, which represents the given matrix.
 
-- **Konstruktori**
+- **Constructors**
 
-Prazan konstruktor i konstruktor na osnovu atributa.
+Empty constructor and a constructor based on attributes.
 
-- **Svojstva**
+- **Properties**
 
-Svojstva N i M koja vraćaju dužinu i širinu matrice i svojstvo Mat kojim može da se postavi matrica i koje može da vrati matricu.
+Properties N and M, which return the length and width of the matrix, and the Mat property, which can set and return the matrix.
 
-- **Operatori**
+- **Operators**
 
-Operator \* za množenje matrica.
+The \* operator for matrix multiplication.
 
-**Klasa Tačka**
+# Class Tacka
 
-Ova klasa nasleđuje klasu Matrica.
+This class inherits from the Matrica class.
 
-- **Atributi**
+- **Attributes**
 
-Imamo static atribut NT koji označava trenutni broj napravljenih tačaka i atribute string ime i Color boja.
+We have a static attribute NT that indicates the current number of created points, string name, and Color color attributes.
 
-- **Konstruktori**
+- **Constructors**
 
-Konstruktor kopije, prazan konstruktor, konstruktor na osnovu atributa.
+Copy constructor, empty constructor, and a constructor based on attributes.
 
-- **Svojstva**
+- **Properties**
 
-Svojstvo za vraćanje imena, boje i x i y koordinata tačke i svojstvo uPointF koje vraća tačku tipa PointF.
+Properties to return the name, color, x, and y coordinates of the point, and a PointF property that returns a PointF type point.
 
-- **Metode**
+- **Methods**
 
-void Crtaj(grafika, koeficijent za razmeru, koordinatni početak) - za crtanje tačke float Rastojanje(Tacka T) - rastojanje od druge tačkefloat Rastojanje(Prava p) - rastojanje od pravefloat Rastojanje(Duz d) - rastojanje od dužifloat Rastojanje(Krug k) - rastojanje od centra kruga
+void Crtaj(graphics, scaling factor, origin) - for drawing the point.
+float Rastojanje(Tacka T) - distance from another point.
+float Rastojanje(Prava p) - distance from a line.
+float Rastojanje(Duz d) - distance from a segment.
+float Rastojanje(Krug k) - distance from the center of a circle.
 
-Pravili smo metode Najblizi koje vraćaju najbliži objekat datoj tački (indeks tog objekta u odgovarajućem nizu). Ovo smo napravili zato što hoćemo da označimo objekat ako neko klikne u njegovoj neposrednoj okolini, da korisnik ne mora da pritisne tačno na taj piksel gde je objekat, nego selektuje objekat najbliži tački na koju je kliknuo mišem.
+We have created methods like Najblizi that return the closest object to the given point (the index of that object in the corresponding array). We did this so that we can highlight an object if someone clicks in its vicinity, allowing the user to select the object closest to where they clicked, rather than having to click exactly on the pixel where the object is located.
 
-int Najblizi(niz pravih u kome su sve prave koje su napravljene) - najbliža prava datoj tački int Najblizi(niz duži) - najbliža duž datoj tački int Najblizi(niz krugova) - najbliži krug datoj tački int Najblizi(niz tačaka) - najbliža tačka datoj tački
+int Najblizi(array of lines containing all created lines) - the closest line to the given point.
+int Najblizi(array of segments) - the closest segment to the given point.
+int Najblizi(array of circles) - the closest circle to the given point.
+int Najblizi(array of points) - the closest point to the given point.
 
-Sada imamo niz klasa koje nasleđuju klasu Matrica. One predstavljaju matrice izometrijskih transformacija. Kada hoćemo da npr. transliramo tačku, njenu sliku dobijemo kad pomnožimo matricu te tačke sa matricom translacije. Zato smo i tačke i izometrije pravili u formi matrica. U sledeće 4 klase imamo samo jedan konstruktor koji pravi matricu te izometrije. Imamo klase: **Translacija, Rotacija, Homotetija** ​ i​ **Refleksija** ​ .​
+Now we have a series of classes that inherit from the Matrica class. They represent matrices of isometric transformations. When, for example, we want to translate a point, we obtain its image by multiplying the matrix of that point by the translation matrix. This is why we represent points and isometries in the form of matrices. In the following four classes, we have only one constructor that creates the matrix for that isometry. The classes are: **Translacija, Rotacija, Homotetija,** and **Refleksija**.
 
-# Klasa Prava
+# Class Prava
 
-- **Atributi**
+- **Attributes**
 
-Imamo static atribut NP koji označava broj napravljenih prava i atribute float k i float n (pravu predstavljamo kao y=k\*x+n) i string ime.
+We have a static attribute NP that indicates the number of created lines, float k, float n attributes (we represent a line as y = k\*x + n), and a string name.
 
-- **Konstruktori**
+- **Constructors**
 
-Konstruktor sa dve tačke i imenom i konstruktor na osnovu atributa.
+Constructor with two points and a name, and a constructor based on attributes.
 
-- **Svojstva**
+- **Properties**
 
-Svojstva za vraćanje koeficijenta, preseka sa y osom i imena.
+Properties to return the coefficient, intersection with the y-axis, and name.
 
-- **Metode**
+- **Methods**
 
-void Crtaj(grafika, koeficijent za razmeru, koordinatni početak, niz objekata, vrsta objekta, RadioButton showhide, pictureBox) - metod za crtanje prave bool Pripada(Tacka T) - da li tačka pripada datoj pravoj
+void Crtaj(graphics, scaling factor, origin, array of objects, object type, RadioButton showhide, pictureBox) - method for drawing the line.
+bool Pripada(Tacka T) - whether the point belongs to the line.
 
-Prava Normala(Tacka T) - normala iz neke tačke na datu pravuPrava Paralela(Tacka T) - prava paralelna datoj pravoj u nekoj tački
+Prava Normala(Tacka T) - the normal from a point to the line.
+Prava Paralela(Tacka T) - a line parallel to the given line through a point.
 
-double Ugao(Prava p) i double Ugao(Prava p) - ugao između date prave i druge prave, odnosno, duži
+double Ugao(Prava p) and double Ugao(Duz d) - the angle between the given line and another line, or segment.
 
-Prava SimetralaUgla(Prava p) - simetrala ugla koje obrazuju data prava i druga prava
+Prava SimetralaUgla(Prava p) - the angle bisector between the given line and another line.
+Prava SimetralaUgla(Duz d) - the angle bisector between the given line and a segment.
 
-Prava SimetralaUgla(Duz d) - simetrala ugla koje obrazuju data prava i duž
+Then we have Presek methods that return a Tacka type object, i.e., the intersection point of the given line with a segment, another line, or a circle.
 
-Zatim imamo metode Presek koje vraćaju tip Tacka, odnosno tačku preseka date prave sa duži, drugom pravom ili krugom.
+The last methods are transformations of the given line using isometric transformations.
 
-Poslednje metode su preslikavanja date prave izometrijskim transformacijama.
+# Class Duz
 
-**Klasa Duz**
+A segment is quite similar to a line, so we made it inherit from the Line class.
 
-Duž je dosta slična pravoj, pa smo napravili da nasleđuje klasu Prava.
+- **Attributes**
 
-- **Atributi**
+We have a static attribute ND that indicates the number of created segments, and attributes Point A and Point B, which are the endpoints of the segment.
 
-Imamo static atribut ND koji označava broj napravljenih duži i atribute Tacka A i Tacka B koji su krajevi duži.
+- **Constructors**
 
-- **Konstruktori**
+Constructor based on attributes.
 
-Konstruktor na osnovu atributa.
+- **Properties**
 
-- **Svojstva**
+Properties FirstPoint and SecondPoint, which return the first and second points of the segment.
 
-Svojstva Prva Tacka1 i Tacka2 koja vraćaju prvu i drugu tačku duži.
+- **Methods**
 
-- **Metode**
+New methods that are not present in the Prava class are: Prava Simetrala() - the bisector of the given segment.
 
-Nove metode kojih nema kod Prave su:Prava Simetrala() - simetrala date duži
+void PravilanMnogougao(number of vertices, array of points, array of segments, array of objects) - create a regular polygon with n sides, where one side is the given segment. Also, add the newly obtained points and segments to the corresponding arrays.
 
-void PravilanMnogougao(broj temena, niz tačaka, niz duži, niz objekata) - pravi pravilan mnogougao sa n stranica, čija je jedna stranica data duž. Takođe, nove dobijene tačke i duži dodaje u odgovarajući niz.
+# Class Krug
 
-# Klasa Krug
+- **Attributes**
 
-- **Atributi**
+We have a static attribute NK that indicates the number of created circles. Point C is the center of the circle, double r is the radius, and we also have a string name.
 
-Imamo static atribut NK koji označava broj napravljenih krugova. Tacka C je centar kruga, double r poluprečnik i imamo još string ime.
+- **Constructors**
 
-- **Konstruktori**
+Constructors based on attributes, constructors with 3 points (needed for the construction of a circle), constructors with 2 points (center and a point on the circle), and constructors with a segment and a point (compass).
 
-Konstruktor na osnovu atributa, konstruktor od 3 tačke(treba nam za konstrukciju 3 tačke na krugu), konstruktor od dve tačke (centar i tačka na krugu) i konstruktor od duži i tačke (šestar).
+- **Properties**
 
-- **Svojstva**
+Properties to return the center, radius, and name.
 
-Svojstva za vraćanje centra, poluprečnika i imena.
+- **Methods**
 
-- **Metode**
+We have methods for drawing the circle, checking if a point belongs to the circle, finding intersections of the circle with other objects, and isometric transformations.
 
-Imamo metode za crtanje kruga, da li tačka pripada krugu, preseke kruga sa drugim objektima, izometrijske transformacije.
+What's new for the circle are tangents from a point to the circle and inversion.
 
-Ono što je novo za krug su tangente iz tačke na krug i inverzija.
+void Tangente(Tacka T, array of lines, array of objects) - if the point belongs to the circle, it returns one tangent; if not, it creates both tangents, if the point is inside the circle, it does nothing.
 
-void Tangente(Tacka T, niz prava, niz objekata) - ako tačka pripada krugu, vraća jednu tangentu, ako ne pripada, napravi obe, ako je unutar kruga ne radi ništa.
+In inversions, we have 5 functions: 
+Tacka Inverzija(Tacka T) - the inverse image of a point relative to the circle, which is the second point;
+Prava Inverzija(Prava p) - the inverse image of a line relative to the circle when the center of the circle belongs to the line, which returns a line;
+Krug Inverzija(Prava p) - the inverse image of a line relative to the circle when the line does not contain the center of the circle, which returns a circle; 
+Krug Inverzija(Krug k) - the inverse image of a circle when the circle does not contain the center of inversion, which is a new circle;
+Prava Inverzija(Krug k) - the inverse image of a circle when it contains the center of inversion, which results in a new line.
 
-U inverzijama imamo 5 funkcija: Inverzija tačke u odnosu na krug, što je druga tačka;
+# FORMA (APPLICATION)
 
-Inverzija prave u odnosu na krug, ako centar kruga pripada pravoj, što vraća pravu;
+- **Initialization**
 
-Inverziju prave u odnosu na krug, ako prava ne sadrži centar kruga, što vraća krug; Inverziju kruga kada krug ne sadrži centar inverzije, što je novi krug i Inverziju kruga kada on sadrži centar, što daje novu pravu.
+Setting static attributes (origin, system size - constant k). Initialize arrays of objects (all together), points, lines, segments, and circles. When adding each object for use, place it in the appropriate array and register changes by increasing the number of objects in each array.
 
-# FORMA (APLIKACIJA)
+- **Variables**
 
-- **Inicijalizacija**
+Introduce all the variables that will be needed and define the arrays mentioned earlier.
 
-Postavljanje static atributa (koordinatni pocetak, velicinu sistema-konstantu k). Inicijalizujemo niz objekata (svi zajedno), niz tacaka, pravih, duzi i krugova. Prilikom dodavanja svakog objekta za upotrebu, smestamo ga u njemu odgovarajuci niz, i registrujemo promene povecanjem broja objekata u svakom nizu.
+- **Methods**
 
-- **Promenljive**
-
-Uvodimo sve promenljive koje ce nam biti potrebne, definisemo malopre pomenute nizove.
-
-- **Metode**
-
-Formiramo pozivanje svih metoda iz klasa, u vezi sa crtanjem: Reset, ponnistava stanje crtanja - time smo zavrsili konstrukciju jednog objekta, postavlja vrednosti promenljivih j1,j2,j3 na 0, vraca pocetnu boju tacki; Undo, vracanje za jedan korak unazad (svaki korak se registruje); Oznacavanje, dajemo ime objektima koje uvodimo; Najblizi, za datu tacku nalazi objekat iz niza objekata koji mu je najblizi, pri cemu je rastojanje objekata definisano u klasama; Dodaj, dodaje objekte u odgovarajuce nizove.
+Formulate the calls to all methods from the classes related to drawing: Reset, resets the drawing state - finishing the construction of an object, sets the values of variables j1, j2, j3 to 0, and returns the initial color of the points; Undo, go back one step (each step is registered); Labeling, assign names to the introduced objects; Closest, for a given point, find the object from the array of objects that is closest to it, where the distance between objects is defined in the classes; Add, add objects to the appropriate arrays.
 
 - **Paint**
 
-Tacke koje smo uveli klikom na povrsinu bojimo plavom, a tacke dobijene kao presek objekata (npr. presek dve prave) bojimo crnom bojom. U stanju crtanja oblika, kad izaberemo tacku za koriscenje, ona postaje zelena.
+Color the points introduced by clicking on the surface in blue, and the points obtained as intersections
+
+ of objects (e.g., the intersection of two lines) in black. In the drawing state, when we select a point for use, it becomes green.
 
 - **Radio Buttons**
 
-Uvodimo potrebne objekte klase Radio Button da bismo izabrali opciju koju zelimo kad crtamo (selektovanjem odgovarajuceg Radio Buttona izvrsavamo zeljeni potez).
+Introduce the necessary objects of the RadioButton class to select the option we want when drawing (by selecting the corresponding Radio Button, we execute the desired action).
 
 - **Zoom**
 
-Uvelicava (zoom in) ili umanjuje (zoom out) koeficijent k, sto rezultuje promeu velicina oblika koje smo nacrtali.
+Increase (zoom in) or decrease (zoom out) the scaling factor k, which results in changing the sizes of the shapes we've drawn.
 
 - **Obrisi sve**
 
-Brisemo ceo sadrzaj, cistimo povrsinu za crtanje.
-
-- **Undo**
-
-Klikom na dugme, poziva metodu Undo.
+Clear the entire content, clean the drawing surface.
 
 - **Pomeraj**
 
-Translira povrsinu za crtanje.
+By clicking the button, call the Undo method.
 
-- **Mouse click**
+- **Move**
 
-# MOUSE CLICK​ (uputstvo za konstrukciju objekata)
+Translate the drawing surface by selecting two points, and translate the selected object by the vector determined by those points.
+
+- **Mouse Click**
+
+# MOUSE CLICK (instructions for constructing objects)
 
 - **Tacka**
 
-Klikom na povrsinu, konstruisemo novu tacku, dodajemo u niz objekata i tacaka i bojimo je plavom bojom
+By clicking on the surface, create a new point, add it to the arrays of objects and points, and color it blue.
 
 - **Duz**
 
-Klikom na dve tacke i izborom opcije Crtanje Duzi, formiramo novu duz koju dodajemo u niz objekata i duzi
+By clicking on two points and choosing the Crtanje Duzi option, create a new segment, add it to the arrays of objects and segments.
 
 - **Prava**
 
-Klikom na dve tacke i izborom opcije Crtanje Prave, formiramo novu duz koju dodajemo u niz objekata i pravih
+By clicking on two points and choosing the Crtanje Prave option, create a new line, add it to the arrays of objects and lines.
 
 - **Paralela / Normala**
 
-Klikom na tacku i pravu konstruisemo paralelu, odnosno normalu kroz tu tacku na tu pravu, nakon cega je dodajemo u niz pravih i objekata
+By clicking on a point and a line, construct a parallel or normal line through that point, then add it to the arrays of lines and objects.
 
 - **Simetrala ugla**
 
-Biramo dve prave i teme ugla, datom opcijom konstruisemo simetralu tog ugla, dodajemo je u niz pravih i objekata
+Select two lines and an angle vertex, construct the angle bisector, add it to the arrays of lines and objects.
 
 - **Simetrala duzi**
 
-Izborom dveju tacaka i date opcije konstruisemo simetralu duzi od te dve tacke, dodajemo je u niz pravih i objekata
+Select two points and use this option to construct the segment bisector between those two points, then add it to the arrays of lines and objects.
 
 - **Mnogougao**
 
-Izborom duzi i ove opcije, unosimo broj temena koje ce imati nas mnogougao. Svako sledece teme konstruise se kao rotacija preposlednjeg oko poslednjeg za ugao (n-2)\*pi/n, dobija se pravilni n-tougao
+Select a segment and use this option to specify the number of vertices for the polygon. Each subsequent vertex is constructed by rotating the previous one around the last one for an angle of (n-2) * pi/n, resulting in a regular n-gon.
 
 - **Tangente**
 
-Izborom tacke i kruga, uz ovu opciju konstruisemo dve tangente iz ove tacke na dati krug, ako se ona ne nalazi unutar kruga. Te dve prave se dodaju u niz pravih i objekata.
+By selecting a point and a circle, use this option to construct two tangents from this point to the given circle if it is not located inside the circle. These two lines are added to the arrays of lines and objects.
 
 - **Presek**
 
-Izborom dva objekta (prava/duz/krug), konstruisemo tacke koje su u preseku njih
+By selecting two objects (lines/segments/circles), construct points that are the intersections of those objects.
 
 - **Duz date duzine**
 
-Izborom tacke i unosom zeljene duzine, konstruisemo duz te duzine, paralelnu sa x-osom koordinatnog sistema
+By selecting a point and entering the desired length, construct a segment of that length, parallel to the x-axis of the coordinate system.
 
 - **Ugao date velicine**
 
-Izborom temena ugla, kraka i unosom velicine ugla konstruise se drugi krak ugla
+By selecting the angle vertex, an arm, and entering the angle size, construct the second arm of the angle.
 
 - **Merenje duzi/ugla**
 
-Izborom neke od ovih opcija izracunavamo i ispisujemo njegovu velicinu
+By selecting one of these options, calculate and display its size.
 
-# Konstrukcije krugova
+# Circle Constructions
 
 - **Centar i tacka na krugu**
 
-Biramo centar kruga i tacku na njemu, cime konstruisemo zeljeni krug
+Select the center of the circle and a point on it to construct the desired circle.
 
 - **Centar i poluprecnik**
 
-Biramo centar i unosimo poluprecnik zeljenog kruga, cime se on konstruise
+Select the center and enter the radius to construct the circle.
 
 - **Tri tacke**
 
-Izborom tri tacke konstruisemo krug kroz njih ovom opcijom
+Select three points to construct a circle through them using this option.
 
 - **Nalazenje centra kruga**
 
-Izborom odredjenog kruga, konstruise se tacka koja je njegov centar
+By selecting a specific circle, construct a point that is its center.
 
-# Transformacije
+# Transformations
 
 - **Homotetija**
 
-Izborom centra homotetije i unosenjem koeficijenta, konstruisemo objekat dobijen datom homotetijom i smestamo u odredjene nizove
+By selecting the center of the homothety and entering the coefficient, construct the object obtained by the given homothety and place it in the appropriate arrays.
 
 - **Translacija**
 
-Izborom dveju tacaka, izabrani objekat transliramo za vektor dobijen tim tackama.
+By selecting two points, translate the selected object by the vector determined by those points.
 
 - **Refleksija**
 
-Izborom ose refleksije i datog objekta, ovom opcijom preslikavamo dati objekat preko te prave
+By selecting the axis of reflection and the object, use this option to map the selected object over that line.
 
 - **Rotacija**
 
-Izborom centra rotacije, klikom na tacku koju rotiramo i unosenjem ugla rotacije (u stepenima), konstruisemo zarotiranu tacku
+By selecting the center of rotation, clicking on the point to be rotated, and entering the rotation angle (in degrees), construct the rotated point.
 
 - **Inverzija**
 
-Izborom tacke i kruga, uz ovu opciju konstruisemo inverznu sliku tacke u odnosu na dati krug (anaizom da li je u krugu, van njega ili na kruznici)
-
+By selecting a point and a circle, use this option to construct the inverse image of the point relative to the given circle (analyzing whether it is inside the circle, outside it, or on the circle).
